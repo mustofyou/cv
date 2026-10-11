@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mustafa Bekir Kaya – CV</title>
+<meta name="description" content="Curriculum vitae of Mustafa Bekir Kaya – data, machine learning and MLOps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* The sky is always night, so one palette serves every system theme. */
+  :root {
+    color-scheme: dark;
+    --bg: #05060f;
+    --bg-deep: #0a0c1f;
+    --text: #eceffd;
+    --muted: #a4abd3;
+    --star: #ffe3a3;        /* warm star-gold: the single accent for interaction */
+    --ice: #9fbcff;         /* cool blue for secondary details */
+    --panel: rgba(13, 15, 38, .58);
+    --line: rgba(165, 180, 255, .2);
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 70px); }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--sans); font-size: 1.05rem; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+
+  /* ---------- Sky layers ---------- */
+  .sky-wrap { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 120%, #14173a 0%, var(--bg) 60%); }
+  .galaxy {
+    position: absolute; left: 50%; top: 50%;
+    width: 170vmax; height: 46vmax;
+    transform: translate(-50%, -50%) rotate(-28.6deg);
+    background:
+      radial-gradient(ellipse 30% 42% at 50% 50%, rgba(255, 224, 170, .22), transparent 70%),
+      radial-gradient(ellipse 55% 50% at 38% 52%, rgba(150, 120, 235, .26), transparent 70%),
+      radial-gradient(ellipse 50% 48% at 66% 46%, rgba(80, 130, 230, .22), transparent 72%),
+      radial-gradient(ellipse 80% 55% at 50% 50%, rgba(120, 130, 220, .14), transparent 75%);
+    filter: blur(28px);
+    opacity: .95;
+  }
+  .dust {
+    position: absolute; left: 50%; top: 50%;
+    width: 150vmax; height: 10vmax;
+    transform: translate(-50%, -50%) rotate(-28.6deg);
+    background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(4, 5, 14, .55), transparent 70%);
+    filter: blur(18px);
+  }
+  #sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  /* ---------- Layout ---------- */
+  main, header.top, footer { position: relative; z-index: 1; }
+  .wrap { width: min(980px, 100% - 2.5rem); margin-inline: auto; }
+  section { padding: clamp(3.5rem, 9vw, 6.5rem) 0 0; }
+
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: linear-gradient(to bottom, rgba(5, 6, 15, .85), rgba(5, 6, 15, 0));
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  }
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 0; }
+  .brand { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; color: var(--text); text-decoration: none; white-space: nowrap; }
+  .brand span { color: var(--star); margin-right: .35rem; }
+  .links { display: flex; gap: 1.4rem; overflow-x: auto; scrollbar-width: none; }
+  .links::-webkit-scrollbar { display: none; }
+  .links a { color: var(--muted); text-decoration: none; font-size: .95rem; white-space: nowrap; padding: .25rem 0; transition: color .25s, text-shadow .25s; }
+  .links a:hover, .links a:focus-visible { color: var(--star); text-shadow: 0 0 14px rgba(255, 227, 163, .75); }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--star); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- Hero ---------- */
+  .hero { min-height: calc(100svh - 70px); display: grid; align-items: center; padding: 2rem 0 0; }
+  .hero-grid { display: grid; grid-template-columns: 1.4fr .9fr; gap: 2.5rem; align-items: center; }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 300; font-variation-settings: "opsz" 144;
+    font-size: clamp(2.6rem, 8vw, 5.4rem); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 1.2rem;
+    text-shadow: 0 0 40px rgba(159, 188, 255, .35);
+  }
+  .hero p.lead { font-size: clamp(1.1rem, 2.4vw, 1.3rem); color: var(--muted); max-width: 34ch; margin: 0 0 2rem; }
+  .cta { display: flex; flex-wrap: wrap; gap: .8rem; }
+  .btn {
+    display: inline-block; padding: .75rem 1.4rem; border-radius: 999px; text-decoration: none; font-weight: 500;
+    border: 1px solid var(--line); color: var(--text); background: rgba(255,255,255,.03);
+    transition: box-shadow .3s, border-color .3s, color .3s, background .3s;
+  }
+  .btn:hover, .btn:focus-visible { border-color: var(--star); color: var(--star); box-shadow: 0 0 22px rgba(255, 227, 163, .4), inset 0 0 12px rgba(255, 227, 163, .1); }
+  .btn.solid { background: var(--star); color: #1a1530; border-color: var(--star); }
+  .btn.solid:hover, .btn.solid:focus-visible { color: #1a1530; box-shadow: 0 0 30px rgba(255, 227, 163, .75); }
+
+  /* Orbit portrait */
+  .orbit { position: relative; width: min(320px, 70vw); aspect-ratio: 1; margin-inline: auto; display: grid; place-items: center; }
+  .orbit .core {
+    width: 46%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
+    font-family: var(--serif); font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 500; color: #1a1530;
+    background: radial-gradient(circle at 35% 30%, #fff6dc, var(--star) 55%, #e9a85d);
+    box-shadow: 0 0 60px rgba(255, 220, 150, .55), 0 0 140px rgba(255, 190, 110, .25);
+  }
+  .ring { position: absolute; border-radius: 50%; border: 1px dashed var(--line); animation: spin linear infinite; }
+  .ring i { position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--ice); box-shadow: 0 0 14px 2px rgba(159, 188, 255, .8); }
+  .ring.r1 { inset: 14%; animation-duration: 26s; }
+  .ring.r2 { inset: 2%; animation-duration: 48s; animation-direction: reverse; }
+  .ring.r2 i { width: 7px; height: 7px; margin-left: -3.5px; top: -3.5px; background: #ffb7a0; box-shadow: 0 0 12px 2px rgba(255, 183, 160, .8); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- Section headings ---------- */
+  h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.8rem, 4.5vw, 2.6rem); line-height: 1.15; margin: 0 0 .5rem; transition: text-shadow .4s; }
+  h2:hover { text-shadow: 0 0 28px rgba(255, 227, 163, .55); }
+  .sub { color: var(--muted); margin: 0 0 2.2rem; max-width: 52ch; }
+
+  .panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+    padding: clamp(1.2rem, 3vw, 1.8rem);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: border-color .35s, box-shadow .35s;
+  }
+  .panel:hover { border-color: rgba(255, 227, 163, .45); box-shadow: 0 0 34px rgba(255, 227, 163, .12); }
+
+  /* ---------- About ---------- */
+  .about { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem; }
+  .about p { margin: 0 0 1rem; }
+  .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+  .facts li { display: flex; flex-direction: column; }
+  .facts b { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; color: var(--star); }
+  .facts span { color: var(--muted); font-size: .92rem; }
+
+  /* ---------- Timeline (a real sequence, so it gets star markers) ---------- */
+  .timeline { position: relative; margin: 0; padding: 0 0 0 2rem; list-style: none; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, var(--star), var(--line) 30%, transparent); }
+  .timeline li { position: relative; margin-bottom: 1.4rem; }
+  .timeline li::before {
+    content: ""; position: absolute; left: calc(-2rem + 1px); top: .6rem; width: 13px; height: 13px;
+    background: var(--star); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+    filter: drop-shadow(0 0 6px rgba(255, 227, 163, .9)); transition: transform .35s, filter .35s;
+  }
+  .timeline li:hover::before { transform: scale(1.7) rotate(45deg); filter: drop-shadow(0 0 12px rgba(255, 227, 163, 1)); }
+  .role { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem 1rem; align-items: baseline; }
+  .role h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 0; }
+  .when { color: var(--ice); font-size: .92rem; }
+  .where { color: var(--muted); margin: .1rem 0 .7rem; }
+  .panel ul.plain { margin: 0; padding-left: 1.1rem; color: #d3d8f5; }
+  .panel ul.plain li { margin-bottom: .3rem; }
+  .panel ul.plain li::marker { color: var(--star); }
+
+  /* ---------- Skills ---------- */
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .skill-groups h3 { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; margin: 0 0 .9rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0; list-style: none; }
+  .chips li {
+    padding: .3rem .85rem; border-radius: 999px; font-size: .92rem; color: #dfe3fb;
+    border: 1px solid var(--line); background: rgba(255,255,255,.03); cursor: default;
+    transition: color .25s, border-color .25s, box-shadow .25s, text-shadow .25s;
+  }
+  .chips li:hover { color: var(--star); border-color: var(--star); text-shadow: 0 0 10px rgba(255, 227, 163, .8); box-shadow: 0 0 16px rgba(255, 227, 163, .35); }
+
+  /* ---------- Projects ---------- */
+  .projects { display: grid; gap: 1.2rem; grid-template-columns: repeat(6, 1fr); }
+  .projects .panel:nth-child(1) { grid-column: span 4; }
+  .projects .panel:nth-child(2) { grid-column: span 2; }
+  .projects .panel:nth-child(3) { grid-column: span 3; }
+  .projects .panel:nth-child(4) { grid-column: span 3; }
+  .projects .panel:nth-child(5) { grid-column: span 2; }
+  .projects .panel:nth-child(6) { grid-column: span 4; }
+  .projects h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 0 0 .4rem; }
+  .projects p { margin: 0 0 .9rem; color: #cfd4f2; }
+  .projects a { color: var(--star); text-decoration: none; border-bottom: 1px solid rgba(255, 227, 163, .35); transition: text-shadow .25s, border-color .25s; }
+  .projects a:hover, .projects a:focus-visible { text-shadow: 0 0 12px rgba(255, 227, 163, .9); border-color: var(--star); }
+  .tags { color: var(--ice); font-size: .88rem; }
+
+  /* ---------- Education + contact ---------- */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .two h3 { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; margin: 0 0 .2rem; }
+  .two p { margin: 0 0 .9rem; color: var(--muted); }
+  .contact { text-align: left; }
+  .big-mail { font-family: var(--serif); font-weight: 300; font-size: clamp(1.5rem, 5vw, 3rem); color: var(--text); text-decoration: none; word-break: break-word; transition: color .3s, text-shadow .3s; }
+  .big-mail:hover, .big-mail:focus-visible { color: var(--star); text-shadow: 0 0 34px rgba(255, 227, 163, .7); }
+  .social { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1.4rem; }
+  .social a { color: var(--muted); text-decoration: none; transition: color .25s, text-shadow .25s; }
+  .social a:hover, .social a:focus-visible { color: var(--star); text-shadow: 0 0 14px rgba(255, 227, 163, .85); }
+  footer { padding: 4rem 0 2.5rem; color: var(--muted); font-size: .9rem; }
+
+  /* One orchestrated moment: the hero arrives like starlight, once. */
+  .js .hero-grid > * { opacity: 0; animation: arrive 1.4s .15s cubic-bezier(.2, .7, .2, 1) forwards; }
+  .js .hero-grid > *:nth-child(2) { animation-delay: .45s; }
+  @keyframes arrive { from { opacity: 0; filter: blur(8px); } to { opacity: 1; filter: blur(0); } }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 820px) {
+    .hero-grid, .about, .two { grid-template-columns: 1fr; }
+    .hero { align-items: start; padding-top: 2rem; }
+    .orbit { order: -1; width: min(220px, 55vw); }
+    .projects { grid-template-columns: 1fr; }
+    .projects .panel:nth-child(n) { grid-column: auto; }
+    .brand span { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ring { animation: none; }
+    .js .hero-grid > * { animation: none; opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sky-wrap" aria-hidden="true">
+  <div class="galaxy" id="galaxy"></div>
+  <div class="dust"></div>
+  <canvas id="sky"></canvas>
+</div>
+
+<header class="top">
+  <nav class="wrap" aria-label="Main">
+    <a class="brand" href="#top"><span>✦</span>Mustafa Bekir Kaya</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#work">Recent work</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#interests">Interests</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <h1>I turn data into models, and I keep looking up.</h1>
+        <p class="lead">Hi, I'm Mustafa Bekir Kaya. I work with data analysis, machine learning and MLOps, and I build small apps that put models in people's hands.</p>
+        <div class="cta">
+          <a class="btn solid" href="#projects">See my projects</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="orbit" aria-hidden="true">
+        <div class="ring r2"><i></i></div>
+        <div class="ring r1"><i></i></div>
+        <div class="core">MK</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <h2>About me</h2>
+      <p class="sub">What I do and what I care about.</p>
+      <div class="about">
+        <div class="panel">
+          <p>I work in data and machine learning: exploring datasets, training models, and wrapping them in simple web apps so others can try them. My notebooks range from classic exercises to clustering and prediction projects.</p>
+          <p>I'm especially curious about language models, AI agents, NLP and spatial data. I also keep my own notes on cloud services such as Google Cloud and AWS, written in both English and Turkish. This site's night-sky theme is my nod to a lifelong habit of looking up.</p>
+        </div>
+        <div class="panel">
+          <ul class="facts">
+            <li><b>32 repositories</b><span>public on GitHub</span></li>
+            <li><b>4 live Spaces</b><span>apps on Hugging Face</span></li>
+            <li><b>GCP &amp; AWS</b><span>cloud notes and practice</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT WORK (a real sequence, so it keeps star markers) -->
+  <section id="work">
+    <div class="wrap">
+      <h2>Recent work</h2>
+      <p class="sub">The latest things I've published on Hugging Face, newest first.</p>
+      <ol class="timeline">
+        <li>
+          <div class="panel">
+            <div class="role"><h3>Maaş Tahmin</h3><span class="when">July 2025</span></div>
+            <p class="where">Streamlit app on Hugging Face Spaces</p>
+            <ul class="plain">
+              <li>An interactive app for predicting salaries from a model I trained.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="panel">
+            <div class="role"><h3>Sketch 2</h3><span class="when">July 2025</span></div>
+            <p class="where">Streamlit app on Hugging Face Spaces</p>
+            <ul class="plain">
+              <li>A second iteration of my sketch experiment, built on my own published model.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="panel">
+            <div class="role"><h3>AI Text Generation</h3><span class="when">July 2025</span></div>
+            <p class="where">Flask web app using Hugging Face Inference</p>
+            <ul class="plain">
+              <li>A web app that generates text from a prompt using hosted language models.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="panel">
+            <div class="role"><h3>Sketch</h3><span class="when">May 2025</span></div>
+            <p class="where">Model and Streamlit app on Hugging Face</p>
+            <ul class="plain">
+              <li>My first published model, paired with a demo app anyone can open.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <p class="sub">The tools and topics I use most. Hover a star to see it shine.</p>
+      <div class="skill-groups">
+        <div class="panel">
+          <h3>Data analysis</h3>
+          <ul class="chips"><li>Python</li><li>Jupyter</li><li>Data visualization</li><li>GIS</li><li>Time series</li></ul>
+        </div>
+        <div class="panel">
+          <h3>Machine learning</h3>
+          <ul class="chips"><li>Machine learning</li><li>Deep learning</li><li>NLP</li><li>spaCy</li><li>LLMs</li><li>AI agents</li><li>AutoML</li><li>Embeddings</li></ul>
+        </div>
+        <div class="panel">
+          <h3>Cloud and delivery</h3>
+          <ul class="chips"><li>MLOps</li><li>Google Cloud</li><li>AWS</li><li>Streamlit</li><li>Flask</li><li>Hugging Face</li><li>Git</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <p class="sub">Open work you can read and run.</p>
+      <div class="projects">
+        <article class="panel">
+          <h3>Machine Learning</h3>
+          <p>A collection of my machine learning projects, kept as notebooks so every step from data to model can be followed.</p>
+          <p class="tags">Jupyter Notebook</p>
+          <a href="https://github.com/mustofyou/Machine-Learning">View on GitHub</a>
+        </article>
+        <article class="panel">
+          <h3>MLOps</h3>
+          <p>Simple projects that practise getting models into production.</p>
+          <p class="tags">Python</p>
+          <a href="https://github.com/mustofyou/MLops">View on GitHub</a>
+        </article>
+        <article class="panel">
+          <h3>Clustering military powers</h3>
+          <p>Grouping countries by military strength with clustering techniques.</p>
+          <p class="tags">Jupyter Notebook</p>
+          <a href="https://github.com/mustofyou/Clustering-the-Military-Powers-of-Countries">View on GitHub</a>
+        </article>
+        <article class="panel">
+          <h3>Titanic with ML</h3>
+          <p>The classic survival prediction problem, worked through with machine learning.</p>
+          <p class="tags">Python</p>
+          <a href="https://github.com/mustofyou/Titanic-with-ML">View on GitHub</a>
+        </article>
+        <article class="panel">
+          <h3>Data Analysis</h3>
+          <p>Exercises and simple analyses, shared to inspire future data analysts.</p>
+          <p class="tags">Jupyter Notebook</p>
+          <a href="https://github.com/mustofyou/Data_Analysis">View on GitHub</a>
+        </article>
+        <article class="panel">
+          <h3>Cloud Computing notes</h3>
+          <p>Personal documentation for Google Cloud and AWS, written in English and Turkish.</p>
+          <p class="tags">GCP · AWS</p>
+          <a href="https://github.com/mustofyou/Cloud-Computing">View on GitHub</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section id="interests">
+    <div class="wrap">
+      <h2>Interests and languages</h2>
+      <p class="sub">Where my curiosity is pointing right now.</p>
+      <div class="two">
+        <div class="panel">
+          <h3>Research interests</h3>
+          <ul class="chips"><li>Neural language models</li><li>Thought embeddings</li><li>AGI</li><li>Vision-language models</li><li>Visual spatial intelligence</li></ul>
+        </div>
+        <div class="panel">
+          <h3>Languages</h3>
+          <p>Turkish and English. I write my notes and documentation in both.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact">
+      <h2>Let's talk</h2>
+      <p class="sub">Open to conversations about data, machine learning and new opportunities.</p>
+      <a class="big-mail" href="https://www.linkedin.com/in/mustafa-bekir-kaya-84a255192" target="_blank" rel="noopener">Message me on LinkedIn</a>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/mustafa-bekir-kaya-84a255192" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/mustofyou" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://huggingface.co/mustofyou" target="_blank" rel="noopener">Hugging Face</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Made under the same sky you're under. © 2026 Mustafa Bekir Kaya</div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+(function () {
+  var canvas = document.getElementById('sky');
+  var ctx = canvas.getContext('2d');
+  var galaxy = document.getElementById('galaxy');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var COLORS = ['255,255,255', '255,255,255', '190,210,255', '170,190,255', '255,236,200', '255,205,175'];
+  var sprites = {};
+  COLORS.forEach(function (c) {
+    if (sprites[c]) return;
+    var s = document.createElement('canvas'); s.width = s.height = 64;
+    var g = s.getContext('2d');
+    var gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    gr.addColorStop(0, 'rgba(' + c + ',1)');
+    gr.addColorStop(.15, 'rgba(' + c + ',.55)');
+    gr.addColorStop(.4, 'rgba(' + c + ',.14)');
+    gr.addColorStop(1, 'rgba(' + c + ',0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 64);
+    sprites[c] = s;
+  });
+
+  var w, h, dpr, stars = [], shoots = [];
+  var mouse = { x: -9999, y: -9999 };
+  var scrollY = window.scrollY || 0;
+  var ANGLE = -0.5;                       // Milky Way tilt in radians (about -28.6deg, matches CSS)
+  var HOVER_R = 90;
+
+  function gauss() { return Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random()); }
+
+  function build() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    var count = Math.max(300, Math.min(1500, Math.round(w * h / 1500)));
+    var cx = w / 2, cy = h / 2, dx = Math.cos(ANGLE), dy = Math.sin(ANGLE);
+    var diag = Math.hypot(w, h), spread = Math.min(w, h) * 0.14 + 20;
+    stars = [];
+    for (var i = 0; i < count; i++) {
+      var band = Math.random() < 0.62, x, y;
+      if (band) {
+        var t = (Math.random() - .5) * diag * 1.15, off = gauss() * spread;
+        x = cx + dx * t - dy * off; y = cy + dy * t + dx * off;
+        if (x < -5 || x > w + 5 || y < -5 || y > h + 5) { i--; continue; }
+      } else { x = Math.random() * w; y = Math.random() * h; }
+      var col = COLORS[(Math.random() * COLORS.length) | 0];
+      var bright = !band && Math.random() < 0.06;
+      stars.push({
+        x: x, y: y, depth: .2 + Math.random() * .8,
+        r: band ? .3 + Math.random() * .6 : (bright ? 1.3 + Math.random() * .9 : .4 + Math.random() * .8),
+        a: band ? .2 + Math.random() * .5 : .35 + Math.random() * .65,
+        sp: .5 + Math.random() * 2, ph: Math.random() * 6.28,
+        col: col, fill: 'rgb(' + col + ')', big: bright, hv: 0
+      });
+    }
+  }
+
+  function spawnShoot() {
+    var fromLeft = Math.random() < .5;
+    shoots.push({
+      x: Math.random() * w * .8 + (fromLeft ? 0 : w * .2), y: Math.random() * h * .4,
+      vx: (fromLeft ? 1 : -1) * (6 + Math.random() * 4), vy: 2.5 + Math.random() * 2.5, life: 1
+    });
+  }
+  var nextShoot = performance.now() + 4000;
+
+  function frame(now) {
+    var t = now / 1000;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    var near = [], R2 = HOVER_R * HOVER_R;
+
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var py = (((s.y - scrollY * s.depth * .12) % h) + h) % h, px = s.x;
+      var ddx = px - mouse.x, ddy = py - mouse.y, d2 = ddx * ddx + ddy * ddy, target = 0;
+      if (d2 < R2) { var k = 1 - Math.sqrt(d2) / HOVER_R; target = k * Math.sqrt(k); }
+      s.hv += (target - s.hv) * .16;
+      if (s.hv < .005) s.hv = 0;
+
+      var tw = reduce ? 1 : .72 + .28 * Math.sin(t * s.sp + s.ph);
+      var alpha = Math.min(1, s.a * tw + s.hv * .75);
+
+      // soft glow: bright stars always, any star once hovered
+      if (s.hv > .02 || s.big) {
+        var gs = s.r * (s.big ? 7 : 4) + s.hv * s.r * 16 + s.hv * 8;
+        ctx.globalAlpha = Math.min(1, (s.big ? .35 * tw : 0) + s.hv * .95);
+        ctx.drawImage(sprites[s.col], px - gs, py - gs, gs * 2, gs * 2);
+      }
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = s.fill;
+      ctx.beginPath(); ctx.arc(px, py, s.r * (1 + s.hv * 1.1), 0, 6.2832); ctx.fill();
+
+      if (s.hv > .35 && near.length < 16) near.push(px, py, s.hv);
+    }
+
+    // faint constellation lines between neighbouring hovered stars
+    if (near.length > 6) {
+      ctx.lineWidth = .7; ctx.strokeStyle = 'rgb(255,227,163)';
+      for (var a = 0; a < near.length; a += 3) {
+        for (var b = a + 3; b < near.length; b += 3) {
+          var lx = near[a] - near[b], ly = near[a + 1] - near[b + 1], dd = Math.hypot(lx, ly);
+          if (dd < 80) {
+            ctx.globalAlpha = .35 * Math.min(near[a + 2], near[b + 2]) * (1 - dd / 80);
+            ctx.beginPath(); ctx.moveTo(near[a], near[a + 1]); ctx.lineTo(near[b], near[b + 1]); ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // shooting stars
+    if (!reduce) {
+      if (now > nextShoot) { spawnShoot(); nextShoot = now + 5000 + Math.random() * 7000; }
+      for (var j = shoots.length - 1; j >= 0; j--) {
+        var m = shoots[j];
+        m.x += m.vx; m.y += m.vy; m.life -= .014;
+        if (m.life <= 0) { shoots.splice(j, 1); continue; }
+        var tx = m.x - m.vx * 9, ty = m.y - m.vy * 9;
+        var lg = ctx.createLinearGradient(m.x, m.y, tx, ty);
+        lg.addColorStop(0, 'rgba(255,255,255,' + m.life + ')'); lg.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.globalAlpha = 1; ctx.strokeStyle = lg; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(tx, ty); ctx.stroke();
+      }
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+
+  function setMouse(e) { mouse.x = e.clientX; mouse.y = e.clientY; }
+  function clearMouse() { mouse.x = mouse.y = -9999; }
+  window.addEventListener('pointermove', setMouse, { passive: true });
+  window.addEventListener('pointerdown', setMouse, { passive: true });
+  window.addEventListener('pointerup', function (e) { if (e.pointerType === 'touch') clearMouse(); });
+  window.addEventListener('pointercancel', clearMouse);
+  document.addEventListener('mouseleave', clearMouse);
+
+  window.addEventListener('scroll', function () {
+    scrollY = window.scrollY;
+    galaxy.style.transform = 'translate(-50%, calc(-50% - ' + (scrollY * .05) + 'px)) rotate(-28.6deg)';
+  }, { passive: true });
+
+  var rt;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(build, 150); });
+
+  build();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
